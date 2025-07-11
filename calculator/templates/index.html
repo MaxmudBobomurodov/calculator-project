@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator (Interface)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: saddlebrown;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+    .history-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.history-link:hover {
+  background-color: #1976D2;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form method="post">
+      {% csrf_token %}
+      <h2>Calculator</h2>
+
+      <input type="number" name="num1" placeholder="First number" required>
+
+      <select name="operation" required>
+        <option value="add">➕ Add</option>
+        <option value="substract">➖ Subtract</option>
+        <option value="multiply">✖ Multiply</option>
+        <option value="divide">➗ Divide</option>
+      </select>
+
+      <input type="number" name="num2" placeholder="Second number" required>
+
+      <button type="submit">Calculate</button>
+
+      {% if result %}
+        <div class="result">Result: {{ result }}</div>
+      {% endif %}
+    </form>
+    <a href="{% url 'calculator:history' %}" class="history-link">📖 History</a>
+  </div>
+</body>
+</html>

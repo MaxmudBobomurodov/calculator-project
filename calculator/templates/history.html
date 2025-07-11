@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculation History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 50px 0;
+    }
+
+    .container {
+      background-color: sandybrown;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 600px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Calculation History</h2>
+
+    {% if history %}
+      <ul>
+        {% for row in history %}
+          <li>{{ row }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No history available.</p>
+    {% endif %}
+
+    <a href="{% url 'calculator:calculator' %}" class="back-link">⬅ Back to Calculator</a>
+  </div>
+</body>
+</html>
